@@ -14,7 +14,7 @@ function Login() {
     setUPass(e.target.value)
   }
   const check=()=>{
-    var credentialsCheck=axios.post(`http://localhost:5000/login`,{"uName":uName,"uPass":uPass})
+    var credentialsCheck=axios.post(`https://login-backend-neon.vercel.app/`,{"uName":uName,"uPass":uPass})
     credentialsCheck.then((data)=>{
        if(data.data===true){
         navigate("/home")
