@@ -10,11 +10,9 @@ function SignUp(){
 
   const handleName=(e)=>{
     setUName(e.target.value)
-    setSpanStyle("none")
   }
   const handlePass=(e)=>{
     setUPass(e.target.value)
-    setSpanStyle("none")
   }
   const signIn=()=>{
     navigate("/")
@@ -53,9 +51,7 @@ function SignUp(){
           </div>
           
         </div>
-        <p style={{ display: spanStyle }} className="text-[#ff3030] font-medium mb-4 md:text-xl ">
-            Incorrect username or password
-          </p>
+      
 
         <button onClick={signUp}
         className="ml-5 px-4 py-1 border-2 border-yellow-400 rounded-md text-xl font-medium text-white">SignUp</button>
