@@ -20,7 +20,7 @@ function SignUp(){
     navigate("/")
   }
   const signUp=()=>{
-    var addUsers=axios.post(`http://localhost:5000/signup`,{"uName":uName,"uPass":uPass})
+    var addUsers=axios.post(`https://login-backend-ushx.onrender.com/signup`,{"uName":uName,"uPass":uPass})
     addUsers.then((data)=>{
         if(data.data==true){
             alert("Account has been created")
