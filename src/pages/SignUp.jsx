@@ -1,10 +1,11 @@
 import { useContext } from "react";
 import { LoginContext } from "../components/Logincontext";
-import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import axios from "axios"
 
-function Login() {
-  const { spanStyle, setSpanStyle,uName,setUName,uPass,setUPass } = useContext(LoginContext);
+
+function SignUp(){
+    const { spanStyle, setSpanStyle,uName,setUName,uPass,setUPass } = useContext(LoginContext);
   const navigate=useNavigate()
 
   const handleName=(e)=>{
@@ -15,25 +16,20 @@ function Login() {
     setUPass(e.target.value)
     setSpanStyle("none")
   }
-  const check=()=>{
-    var credentialsCheck=axios.post(`http://localhost:5000/login`,{"uName":uName,"uPass":uPass})
-    credentialsCheck.then((data)=>{
-       if(data.data===true){
-        navigate("/home")
-       }
-       else{
-        setSpanStyle("")
-       }
+  const signIn=()=>{
+    navigate("/")
+  }
+  const signUp=()=>{
+    var addUsers=axios.post(`http://localhost:5000/signup`,{"uName":uName,"uPass":uPass})
+    addUsers.then((data)=>{
+        if(data.data==true){
+            alert("Account has been created")
+            navigate("/home")
+        }
     })
   }
-
-  const signUp=()=>{
-    navigate("/signUp")
-  }
-
-
-  return (
-    <div className="  bg-gradient-to-r from-pink-500 via-purple-500 to-violet-500 mx-5 md:w-1/2 p-5  md:mx-[25%] mt-36 text-center border rounded-xl ">
+    return(
+        <div className="  bg-gradient-to-r from-pink-500 via-purple-500 to-violet-500 mx-5 md:w-1/2 p-5  md:mx-[25%] mt-36 text-center border rounded-xl ">
       <h1 className="text-2xl md:text-4xl font-medium my-5">Enter your details</h1>
    
         <div>
@@ -61,11 +57,12 @@ function Login() {
             Incorrect username or password
           </p>
 
-        <button onClick={check}
-        className="ml-5 px-4 py-1 border-2 border-yellow-400 rounded-md text-xl font-medium text-white">Login</button>
-       <p>If you don't have an account <button onClick={signUp} className="text-red-600 font-bold"> sign up</button> first</p>
+        <button onClick={signUp}
+        className="ml-5 px-4 py-1 border-2 border-yellow-400 rounded-md text-xl font-medium text-white">SignUp</button>
+        <p>Already have an account? <button onClick={signIn} className="text-red-600 font-bold"> Login In</button> here</p>
+
     </div>
-  );
+    )
 }
 
-export default Login;
+export default SignUp
